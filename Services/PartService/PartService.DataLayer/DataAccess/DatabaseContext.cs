@@ -11,5 +11,6 @@ namespace PartService.DataLayer.DataAccess
         }
 
         public DbSet<Part> Part { get; set; }
+        public DbSet<PartType> PartType { get; set; }
     }
 }

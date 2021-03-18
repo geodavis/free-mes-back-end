@@ -9,19 +9,19 @@
           "Port": 1223
         }
       ],
-      "UpstreamPathTemplate": "/partservice",
+      "UpstreamPathTemplate": "/partservice/parts",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/api/order",
+      "DownstreamPathTemplate": "/api/partTypes",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 51125
+          "Port": 1223
         }
       ],
-      "UpstreamPathTemplate": "/orderservice",
+      "UpstreamPathTemplate": "/partservice/parttypes",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }
   ]
