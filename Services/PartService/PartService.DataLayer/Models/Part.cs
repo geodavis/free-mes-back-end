@@ -10,6 +10,6 @@ namespace PartService.DataLayer.Models
         [Required, StringLength(255)]
         public string PartDescription { get; set; }
         public int PartTypeId { get; set; }
-        public PartType PartType { get; set; }
+        public virtual PartType PartType { get; set; }
     }
 }
