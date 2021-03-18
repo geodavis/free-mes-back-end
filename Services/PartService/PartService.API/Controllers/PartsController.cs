@@ -23,16 +23,16 @@ namespace PartService.API.Controllers
 
         // GET: api/Parts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Part>>> GetParts()
+        public async Task<ActionResult<IEnumerable<Part>>> GetPart()
         {
-            return await _context.Parts.ToListAsync();
+            return await _context.Part.ToListAsync();
         }
 
         // GET: api/Parts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Part>> GetPart(int id)
         {
-            var part = await _context.Parts.FindAsync(id);
+            var part = await _context.Part.FindAsync(id);
 
             if (part == null)
             {
@@ -78,7 +78,7 @@ namespace PartService.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Part>> PostPart(Part part)
         {
-            _context.Parts.Add(part);
+            _context.Part.Add(part);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPart", new { id = part.Id }, part);
@@ -88,13 +88,13 @@ namespace PartService.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePart(int id)
         {
-            var part = await _context.Parts.FindAsync(id);
+            var part = await _context.Part.FindAsync(id);
             if (part == null)
             {
                 return NotFound();
             }
 
-            _context.Parts.Remove(part);
+            _context.Part.Remove(part);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace PartService.API.Controllers
 
         private bool PartExists(int id)
         {
-            return _context.Parts.Any(e => e.Id == id);
+            return _context.Part.Any(e => e.Id == id);
         }
     }
 }

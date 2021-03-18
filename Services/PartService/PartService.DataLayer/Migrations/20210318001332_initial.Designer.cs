@@ -9,7 +9,7 @@ using PartService.DataLayer.DataAccess;
 namespace PartService.DataLayer.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210312211811_initial")]
+    [Migration("20210318001332_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,9 +37,42 @@ namespace PartService.DataLayer.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
+                    b.Property<int>("PartTypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Parts");
+                    b.HasIndex("PartTypeId");
+
+                    b.ToTable("Part");
+                });
+
+            modelBuilder.Entity("PartService.DataLayer.Models.PartType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PartType");
+                });
+
+            modelBuilder.Entity("PartService.DataLayer.Models.Part", b =>
+                {
+                    b.HasOne("PartService.DataLayer.Models.PartType", "PartType")
+                        .WithMany()
+                        .HasForeignKey("PartTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PartType");
                 });
 #pragma warning restore 612, 618
         }

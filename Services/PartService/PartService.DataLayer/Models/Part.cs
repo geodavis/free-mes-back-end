@@ -9,5 +9,7 @@ namespace PartService.DataLayer.Models
         public string PartNumber { get; set; }
         [Required, StringLength(255)]
         public string PartDescription { get; set; }
+        public int PartTypeId { get; set; }
+        public PartType PartType { get; set; }
     }
 }

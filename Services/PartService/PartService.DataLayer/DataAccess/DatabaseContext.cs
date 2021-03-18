@@ -7,8 +7,9 @@ namespace PartService.DataLayer.DataAccess
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-
+            
         }
-        public DbSet<Part> Parts { get; set; }
+
+        public DbSet<Part> Part { get; set; }
     }
 }
