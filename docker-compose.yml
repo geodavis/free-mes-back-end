@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pa55word"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+  partservice.api:
+    image: geoldavis/partserviceapi:latest
+    build:
+      context: .
+      dockerfile: Services\PartService\PartService.API\Dockerfile
+    ports:
+      - "8080:80"

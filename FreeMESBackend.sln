@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{1E7E8C75-CE1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway.Web", "Gateway.Web", "{235B0D56-54AF-4D2D-9C05-CFAE6AFCEBF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Web", "APIGateways\Web\Gateway.Web\Gateway.Web.csproj", "{0F4FB322-4EF4-415D-A31B-168886239440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.Web", "APIGateways\Web\Gateway.Web\Gateway.Web.csproj", "{0F4FB322-4EF4-415D-A31B-168886239440}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2A2EB7C5-9188-4D79-B8A0-B5C002E607BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{0F4FB322-4EF4-415D-A31B-168886239440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F4FB322-4EF4-415D-A31B-168886239440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F4FB322-4EF4-415D-A31B-168886239440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2EB7C5-9188-4D79-B8A0-B5C002E607BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2EB7C5-9188-4D79-B8A0-B5C002E607BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2EB7C5-9188-4D79-B8A0-B5C002E607BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2EB7C5-9188-4D79-B8A0-B5C002E607BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

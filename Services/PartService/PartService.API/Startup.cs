@@ -28,10 +28,21 @@ namespace PartService.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var server = Configuration["DBServer"] ?? "ms-sql-server";
+            var port = Configuration["DBPort"] ?? "1433";
+            var user = Configuration["DBUser"] ?? "SA";
+            var password = Configuration["DBPassword"] ?? "Pa55word";
+            var database = Configuration["Database"] ?? "Part";
+
             services.AddDbContext<DatabaseContext>(options =>
+                options.UseLazyLoadingProxies().UseSqlServer(
+                    $"Server={server},{port};Initial Catalog={database};User ID={user};Password={password}",
+                x => x.MigrationsAssembly("PartService.DataLayer")));
+
+/*            services.AddDbContext<DatabaseContext>(options =>
                 options.UseLazyLoadingProxies()
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                    x => x.MigrationsAssembly("PartService.DataLayer")));
+                    x => x.MigrationsAssembly("PartService.DataLayer")));*/
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -42,6 +53,13 @@ namespace PartService.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                context.Database.Migrate();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
